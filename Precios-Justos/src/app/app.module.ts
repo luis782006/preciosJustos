@@ -6,16 +6,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProvinciasSelectComponent } from './componentes/provincias-select/provincias-select.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProvinciasSelectComponent
+    ProvinciasSelectComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+   
+
   ],
   providers: [],
   bootstrap: [AppComponent]

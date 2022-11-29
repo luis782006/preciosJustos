@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { map } from 'rxjs';
-import { Provincia } from '../Model/Provincia';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProvinciaService {
 
- url:string="./app/assest/api"
+ url:string="./app/assets/api/provincias.json"
 
+
+ 
  constructor(private provinciaService:HttpClient) { }
-
+//src\app\assets\api\provincias.json
+//\src\assets\api\provincias.json
   getProvincia(){
-    return this.provinciaService.get(`${this.url}/provincias.json`).pipe(
+    return this.provinciaService.get("./assets/api/provincias.json").pipe(
       // con map de rxjs abro una funcion para mapear la data 
       map((data:any)=>{
         let resp=data.map((provincia:any)=>{  // esta data se la paso a una variable que revibe la data mapeada
