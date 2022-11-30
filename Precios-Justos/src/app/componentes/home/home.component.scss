@@ -4,7 +4,7 @@
         font-family: $font;
         color:$primary-color;
         margin-bottom: 2rem;
-      
+        opacity: 0;
     }
 
    
@@ -22,6 +22,7 @@
     //margin-top:30rem ;
     @include center;
     margin-top:4rem;
+    opacity: 0;
 }
 img{
     width:14rem;
