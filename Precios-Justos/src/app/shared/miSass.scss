@@ -1,0 +1,16 @@
+
+ 
+$font: Roboto, sans-serif;
+$primary-color: rgb(219, 217, 217);
+
+@mixin theme($theme: rgb(77,78,129)) {
+    background: $theme;
+    background: linear-gradient(0deg, rgb(2, 2, 53) 0%,#6FA0CE 100%);
+ 
+  }
+ 
+@mixin center(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
