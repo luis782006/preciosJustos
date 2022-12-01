@@ -15,8 +15,12 @@ export class ProvinciasSelectComponent implements OnInit {
   nombreProvincia:string;
   valueId:number;
   provincias: Provincia[];
+  provinciaBuscada:Provincia;
+  
 
-  constructor(private provinciaHttp:ProvinciaService) { 
+  constructor(private provinciaHttp:ProvinciaService,
+              private nombreProvinciaService:ProvinciaService
+             ) { 
    
   }
 
@@ -34,7 +38,15 @@ export class ProvinciasSelectComponent implements OnInit {
     this.nombreProvincia=this.provincias[Number(this.opcionValor)-2].nombre; 
   }
 
-  getListPrecios(){
+  // getListPrecios(){
+  //   let provinciaBuscada=this.provincias.find(provincias=>provincias.nombre===this.nombreProvincia);
+  //   console.log(provinciaBuscada);  
     
+  // }
+  sendNombreProvinciasToService(){
+    let provinciaBuscada=this.provincias.find(provincias=>provincias.nombre===this.nombreProvincia);
+    this.nombreProvinciaService.getProvinciaBuscada(provinciaBuscada);
   }
+  
+
 }

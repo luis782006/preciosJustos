@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { map } from 'rxjs';
+import { map, pipe } from 'rxjs';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 export class ProvinciaService {
 
  url:string="./app/assets/api/provincias.json"
-
+ provincia:string;
 
  
  constructor(private provinciaService:HttpClient) { }
@@ -33,5 +33,21 @@ export class ProvinciaService {
     );
   }
 
+
+
+  getProvinciaBuscada (nombreProvincia:any) {
+     let porvinciaAux=(nombreProvincia.nombre);
+     
+     this.provincia=porvinciaAux.toLowerCase().replace(
+        //valor a remplazar  
+       "ó"
+        //valor del remplazo
+       ,"o"
+       );
+
+    console.log(this.provincia);
+    
+  }
+  
 
 }
