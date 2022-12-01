@@ -1,1 +1,13 @@
-<p>provincias-select works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col portal">
+            <h2>Provincias</h2>
+            <select [(ngModel)]="opcionSeleccionado" class="form-select miselect" style="font-size:1.5rem;" (change)="getNombreProvincia()">
+                <option style="font-size:1.5rem;">Seleccione una provincia...</option>
+                <option style="font-size:1.5rem;" *ngFor="let provincia of provincias" [value]='provincia.id'>{{provincia.nombre}}</option>
+            </select>
+            <p class="mt-5">Mostrar listados de precios de</p>
+            <button class="btn btn-primary" *ngIf="valueId" (click)="getListPrecios()" >{{nombreProvincia}}</button>
+        </div>
+    </div>
+</div>

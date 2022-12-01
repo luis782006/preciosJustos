@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Provincia } from 'src/app/Model/Provincia';
 import { ProvinciaService } from 'src/app/services/provincia.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-provincias-select',
@@ -9,7 +10,10 @@ import { ProvinciaService } from 'src/app/services/provincia.service';
 })
 export class ProvinciasSelectComponent implements OnInit {
 
-
+  opcionSeleccionado:string;
+  opcionValor:string;
+  nombreProvincia:string;
+  valueId:number;
   provincias: Provincia[];
 
   constructor(private provinciaHttp:ProvinciaService) { 
@@ -21,10 +25,16 @@ export class ProvinciasSelectComponent implements OnInit {
     this.provinciaHttp.getProvincia().subscribe((data:any) => {
       this.provincias=data;
     })
-
-    console.log(this.provincias);
-    
-
+    this.valueId=0;
   }
 
+  getNombreProvincia(){
+    this.opcionValor = this.opcionSeleccionado;
+    this.valueId=Number(this.opcionValor)-2;
+    this.nombreProvincia=this.provincias[Number(this.opcionValor)-2].nombre; 
+  }
+
+  getListPrecios(){
+    
+  }
 }
