@@ -16,6 +16,7 @@ export class ProvinciasSelectComponent implements OnInit {
   valueId:number;
   provincias: Provincia[];
   provinciaBuscada:Provincia;
+  provinciasProduct:any;
   
 
   constructor(private provinciaHttp:ProvinciaService,
@@ -43,9 +44,23 @@ export class ProvinciasSelectComponent implements OnInit {
   //   console.log(provinciaBuscada);  
     
   // }
+
+  cleaningProvinciaProduct(provinciaProduct:any){
+    delete provinciaProduct.range;
+    delete provinciaProduct.majorDimension;
+
+  }
+
   sendNombreProvinciasToService(){
     let provinciaBuscada=this.provincias.find(provincias=>provincias.nombre===this.nombreProvincia);
     this.nombreProvinciaService.getProvinciaBuscada(provinciaBuscada);
+    this.nombreProvinciaService.getProvinciasProduct().subscribe((dataProductos)=>{
+      this.provinciasProduct=dataProductos;
+
+      this.cleaningProvinciaProduct(this.provinciasProduct)
+      console.log(this.provinciasProduct);
+      
+    })
   }
   
 
