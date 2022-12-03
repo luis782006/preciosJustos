@@ -48,3 +48,10 @@ si esta en oferta, si es baja caloria. ect.
 Las imagenes del producto la vamos a tomar de una API.
 
 Ojo. concatenacion de funciones.
+
+Location tiene la informacion de la ruta anterior.
+Se importa de @angular/common
+se crea una varaible 
+location: Location ( en el constructor)
+metodo 
+this.location.back()
