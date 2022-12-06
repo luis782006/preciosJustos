@@ -7,12 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProvinciasSelectComponent } from './componentes/provincias-select/provincias-select.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { ListadoComponent } from './componentes/listado/listado.component';
+import { DetalleProductoComponent } from './componentes/detalle-producto/detalle-producto.component';
+import { Pagina404Component } from './componentes/pagina404/pagina404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProvinciasSelectComponent,
-    HomeComponent
+    HomeComponent,
+    ListadoComponent,
+    DetalleProductoComponent,
+    Pagina404Component
   ],
   imports: [
     BrowserModule,

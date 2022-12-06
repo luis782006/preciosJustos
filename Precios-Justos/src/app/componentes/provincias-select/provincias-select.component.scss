@@ -1,33 +1,36 @@
-@import '../../shared/miSass.scss';
+@import "../../shared/miSass.scss";
 .container {
-    h2{
-        font-family: $font;
-        color:$primary-color;
-        margin-bottom: 1rem;
-        margin-top: 5rem;
-        
-    }
+  h2 {
+    font-family: $font;
+    color: $primary-color;
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+  }
 }
 .portal {
-    @include theme;
+  @include theme;
+  @include center;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 20px;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+}
+
+.miselect {
+  max-width: 40rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+p {
+  color: $primary-color;
+  font-size: 1.5rem;
+}
+button {
+  font-size: 1.5rem;
+}
+.col{
     @include center;
     flex-direction: column;
-    justify-content: flex-start;
-    border-radius:20px;
-    width:100%;
-    height:100vh;
-    margin:auto;
-  }
-
-.miselect{
-    max-width:40rem;
-    padding:0.5rem;
-    font-size:1rem;
-}
-p{
-    color:$primary-color;
-    font-size:1.5rem;
-}
-button{
-    font-size:1.5rem;
 }
