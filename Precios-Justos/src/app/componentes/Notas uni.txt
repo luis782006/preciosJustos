@@ -1,0 +1,57 @@
+Ruteo 
+. Acceso directo a un contenido
+
+.Links internos
+
+.Eventos
+
+recuersos de una url
+
+/....ruta(producto)..../...Parametro(nro47)..?Parametros Opcionales (?Parametro1=valor).... 
+
+creacion de pagina 404
+No solo sirve poner que la pagina no se encontro la pagina, se le pueda dar mas informacion
+dandole un menu o boton de regreso, o pasarle alguna informacion 
+
+Intslacion bootstrap
+npm i bootstrap jquery /@popperjs/core
+
+-----------------------------------------
+Si se instala una libreria se puede accionar desde angular.json en el array script
+como se agregan las librerias en una pagina comun en las tag de script.
+El router-oulet es como un componente y dentro de el donde van a vivir los compnentes
+que por ruteo llegan a el.
+Era por esto que se duplicaba los componentes.
+
+Meter el router-oulet dentro de un contenedor y definirlo con un ancho de telefono.
+
+La ruta 404 se define con 2 ** path: '**' ,component: Componente404
+
+la ruta en html entra por un cambio entre href por routerLink
+<a routerLink='/miRuta'>Anda a esa ruta ya</a>
+
+path redirectTo: los redirect no indican component:MiComponent. Se le pasa
+redirectTo:'/veteAhi'
+
+Pasaje de parametro por url
+path: 'provincia/:nombreVariable/
+Es importante que hay que importar ActivatedRoute. Luego se hace la logica useando
+esta variable
+
+Recuerda de usar la destructuracion de ojectos. Sobre todo la del ActivatedRoute
+Controlar que si por ruta url pasan una provincia y no existe. Se asume que la url no 
+es correcta y redirecciona a 404
+
+En la pagina de producto marcarlo con detalles, ej si sirve para comer, limpiar
+si esta en oferta, si es baja caloria. ect.
+
+Las imagenes del producto la vamos a tomar de una API.
+
+Ojo. concatenacion de funciones.
+
+Location tiene la informacion de la ruta anterior.
+Se importa de @angular/common
+se crea una varaible 
+location: Location ( en el constructor)
+metodo 
+this.location.back()
