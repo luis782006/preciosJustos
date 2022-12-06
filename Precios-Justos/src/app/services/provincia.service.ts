@@ -10,7 +10,7 @@ export class ProvinciaService {
 
   urlBase: string = "./assets/api/";
   provincias: string = "provincias.json";
-  provinciaNombre: string;
+ 
  
   constructor(private provinciaService: HttpClient) { }
   //src\app\assets\api\provincias.json
@@ -34,32 +34,19 @@ export class ProvinciaService {
     );
   }
 
-  getProvinciaBuscada (nombreProvincia: any) {
-    let porvinciaTilAux=(nombreProvincia.nombre);
-    //elimino las tildes
-    porvinciaTilAux=porvinciaTilAux.normalize('NFD').replace(/[\u0300-\u036F]/g,'');
 
-    //elimino y sustituyos los espacios
-    porvinciaTilAux=porvinciaTilAux.replace(/\s/g,"-");
-
-    // paso a lowerCase
-    this.provinciaNombre=porvinciaTilAux.toLowerCase();
-       
-    console.log(this.provinciaNombre);
+  getProvinciasProduct(nombreProvincia:string){
+    return this.provinciaService.get(`${this.urlBase}/${nombreProvincia}.json`);
   }
 
-  getProvinciasProduct(){
-    return this.provinciaService.get(`${this.urlBase}/${this.provinciaNombre}.json`);
-  }
+  // getDetalleProducto(index: number) {
+  //   const productos = this.provinciaService.get(`${this.urlBase}/${this.nombreProvincia}.json`);
 
-  getDetalleProducto(index: number) {
-    const productos = this.provinciaService.get(`${this.urlBase}/${this.provinciaNombre}.json`);
-
-    const producto = productos[index];
+  //   const producto = productos[index];
     
-    console.log(producto);
+  //   console.log(producto);
 
-    return producto;
-  }
+  //   return producto;
+  // }
   
 }

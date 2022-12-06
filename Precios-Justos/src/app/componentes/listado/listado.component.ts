@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProvinciaService } from 'src/app/services/provincia.service';
 import { Product } from 'src/app/Model/Product';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -13,17 +13,22 @@ export class ListadoComponent implements OnInit {
   provinciasProduct: any;
   arrayProduct: Product[] = [];
   valueId: any;
+  nombreProvincia:any;
   productBuscado:any;
+  codeProduct:any;
+  
   constructor(private servicio: ProvinciaService,
-              private actRouter:ActivatedRoute
+              private actRouter:ActivatedRoute,
+              private router: Router
              ) {}
 
   ngOnInit(): void {
+    this.getParamtFromUrl();
     this.servicio
-      .getProvinciasProduct()
+      .getProvinciasProduct(this.nombreProvincia)
       .subscribe((dataProductos) => {
         this.provinciasProduct = dataProductos;
-
+               
         //delete atrribute useless
         this.cleaningProvinciaProduct(this.provinciasProduct);
 
@@ -32,8 +37,15 @@ export class ListadoComponent implements OnInit {
           this.provinciasProduct.values.shift();
         }
         this.pushProducts();
+
+        this.getParamtFromUrl()
       });
 
+  }
+  getParamtFromUrl(){
+    this.nombreProvincia=this.actRouter.snapshot.paramMap.get('nombreProvincia')
+    
+    //console.log(this.nombreProvincia);
   }
 
   cleaningProvinciaProduct(provinciaProduct: any) {
@@ -42,7 +54,7 @@ export class ListadoComponent implements OnInit {
   }
 
   pushProducts() {
-    console.log(this.arrayProduct);
+    //console.log(this.arrayProduct);
     for (let index = 0; index < this.provinciasProduct.values.length; index++) {
       let indexCode: number = 0;
       let indexNameProduct: number = 1;
@@ -54,6 +66,7 @@ export class ListadoComponent implements OnInit {
         price: this.provinciasProduct.values[index][2],
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellendus laudantium vel quasi quibusdam dolore incidunt qui consectetur fuga cum"
       };
+
       this.arrayProduct.push(this.provinciasProduct.values[index]);
     }
   }
@@ -62,19 +75,13 @@ export class ListadoComponent implements OnInit {
 
   }
 
-  // Aplicar el slug, envío de parametros por url y captura de los mismos.
- // mostrarDes(idProd: number){
-    //const idProducto = this.actRouter.snapshot.params;
-    //const producto = idProducto;
-    // this.servicio.getDetalleProducto(idProducto).subscribe((data: any) => {
-    
-    // });
-    
-   /*  console.log(this.arrayProduct[0].code);
-    console.log('Soy una foto genérica');
-    console.log(this.arrayProduct[0].nameProduct);
-    console.log(this.arrayProduct[0].price);
-    console.log(this.arrayProduct[0].description); */
-    
-  //}
+  mostrarDescripcion(codigo:any){
+        
+    this.codeProduct=String(codigo);
+    this.router.navigateByUrl(`/productos/${this.codeProduct}/detalle-producto`);
+  }
+
+ 
 }
+
+

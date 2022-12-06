@@ -9,8 +9,9 @@
             <h5 class="card-title">{{producto.code}}</h5>
             <h5 class="card-text">{{producto.nameProduct}}</h5>
             <h6 class="card-text">{{producto.price}}</h6>
-            <!-- <button class="btn btn-success" (click)="mostrarDes()">Ver mas</button> -->
-            <button class="btn btn-success">Ver mas</button>
+
+            <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
+           
 
         </div>
     </div>
