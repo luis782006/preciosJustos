@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProvinciaService } from 'src/app/services/provincia.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleProductoComponent implements OnInit {
 
-  constructor() { }
+  codeProduct:any;
+
+  constructor(private actRoute:ActivatedRoute,
+              private productosService:ProvinciaService
+             ) { }
 
   ngOnInit(): void {
+    this.codeProduct=this.actRoute.snapshot.paramMap.get('codeProduct')
+    console.log(this.codeProduct);
+    // llamar al servicio, ademas de ver como pasar el arrayProduct del componente anterior a este para filtrarlo por ese code
   }
 
  // Aplicar el slug, envío de parametros por url y captura de los mismos.
