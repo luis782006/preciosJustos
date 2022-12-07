@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProvinciaService } from 'src/app/services/provincia.service';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -13,8 +14,8 @@ export class DetalleProductoComponent implements OnInit {
 
   codeProduct: any;
   //
-  descripcion: string;
-  precio: string;
+  // descripcion: string;
+  // precio: string;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -25,20 +26,15 @@ export class DetalleProductoComponent implements OnInit {
 
   ngOnInit(): void {
     // this.codeProduct = this.actRoute.snapshot.paramMap.get('codeProduct');
-    // console.log({ codigoProducto: this.codeProduct });
+    // console.log(this.codeProduct );
     // this.productosService.getDetalleProducto(this.codeProduct);
+    this.getParamUrl();
+  }
 
-    // llamar al servicio, ademas de ver como pasar el arrayProduct del componente anterior a este para filtrarlo por ese code
-
-    // Propuesta, enviar el índice en lugar del código EAN...
-    const idx = this.actRoute.snapshot.paramMap.get('idx');
-    // const producto = this.productosService.getDetalleProducto(idx); // y mostrar datos producto en el html
-    let producto: any;
-    this.productosService.getDetalleProducto(idx).subscribe((p: any) => producto = p); // y mostrar datos producto en el html
-    console.log({producto});
-    
-    this.descripcion = producto[1];
-    this.precio = producto[2];
+  getParamUrl(): void {
+    this.codeProduct = this.actRoute.snapshot.paramMap.get('codeProduct');
+    console.log(this.codeProduct );
+    this.productosService.getDetalleProducto(this.codeProduct);
   }
 
   // Aplicar el slug, envío de parametros por url y captura de los mismos.

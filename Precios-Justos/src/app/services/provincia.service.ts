@@ -15,6 +15,8 @@ export class ProvinciaService {
   // Opción 1.
   provSelec: any;
 
+  productos: any[] = ['caca'];
+
   constructor(private provinciaService: HttpClient) { }
   //src\app\assets\api\provincias.json
   //\src\assets\api\provincias.json
@@ -45,12 +47,35 @@ export class ProvinciaService {
     return this.provSelec;
   }
 
-  getDetalleProducto(idx: any) {
-    idx = Number(idx);
-    console.log({ provSelec: this.provSelec.values });
-    console.log({ producto: this.provSelec.values[idx] });
+  pushProducto(productos: any): void {
+    this.productos = productos;
+    console.log(productos);
+  }
+
+  // getDetalleProducto(idx: any) {
+  //   // idx = Number(idx);
+  //   // console.log({ provSelec: this.provSelec.values });
+  //   // console.log({ producto: this.provSelec.values[idx] });
     
-    return this.provSelec.values[idx+2];
+  //   // return this.provSelec.values[idx+2];
+  // }
+
+  getDetalleProducto(codeProduct: any) {
+    // event.preventDefault();
+
+    let detalleProducto: any;
+    detalleProducto = this.productos.find(p => p.code == codeProduct);
+    
+    // console.log(this.productos.find(p => p.code == codeProduct));
+
+
+    // return this.productos.find(p => p.code == codeProduct);
+    
+    return console.log({
+      productos: this.productos,
+      detalleProducto
+    });
+    
   }
 
 }
