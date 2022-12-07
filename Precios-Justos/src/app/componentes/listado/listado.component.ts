@@ -75,10 +75,14 @@ export class ListadoComponent implements OnInit {
 
   }
 
-  mostrarDescripcion(codigo:any){
+  // mostrarDescripcion(codigo:any){
         
-    this.codeProduct=String(codigo);
-    this.router.navigateByUrl(`/productos/${this.codeProduct}/detalle-producto`);
+  //   this.codeProduct=String(codigo);
+  //   this.router.navigateByUrl(`/productos/${this.codeProduct}/detalle-producto`);
+  // }
+
+  mostrarDescripcion(idx: any) {    
+    this.router.navigateByUrl(`/productos/${idx}/detalle-producto`);
   }
 
  
