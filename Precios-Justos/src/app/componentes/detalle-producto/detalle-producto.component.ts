@@ -16,6 +16,7 @@ export class DetalleProductoComponent implements OnInit {
   //
   // descripcion: string;
   // precio: string;
+  arrayProduct: any;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -29,11 +30,14 @@ export class DetalleProductoComponent implements OnInit {
     // console.log(this.codeProduct );
     // this.productosService.getDetalleProducto(this.codeProduct);
     this.getParamUrl();
+    this.arrayProduct=this.productosService.arrayProdut;
+    console.log(this.arrayProduct);
+    
   }
 
   getParamUrl(): void {
     this.codeProduct = this.actRoute.snapshot.paramMap.get('codeProduct');
-    console.log(this.codeProduct );
+      console.log(this.codeProduct );
     this.productosService.getDetalleProducto(this.codeProduct);
   }
 

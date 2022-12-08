@@ -10,12 +10,13 @@ export class ProvinciaService {
 
   urlBase: string = "./assets/api/";
   provincias: string = "provincias.json";
+  arrayProdut:any;
 
   // Aux. Almacenaremos la provincia seleccionada para saber a qué objeto llamar cuando seleccionen un producto
   // Opción 1.
   provSelec: any;
 
-  productos: any[] = ['caca'];
+  productos: any[] = [];
 
   constructor(private provinciaService: HttpClient) { }
   //src\app\assets\api\provincias.json
@@ -41,11 +42,12 @@ export class ProvinciaService {
 
 
   getProvinciasProduct(nombreProvincia: string) {
-    this.provSelec = this.provinciaService.get(`${this.urlBase}/${nombreProvincia}.json`);
+ 
     // this.provinciaService.get(`${this.urlBase}/${nombreProvincia}.json`).subscribe((p: any) => this.provSelec = p);
-    console.log(this.provSelec);
-    return this.provSelec;
+   return this.provinciaService.get(`${this.urlBase}/${nombreProvincia}.json`);
   }
+
+  
 
   pushProducto(productos: any): void {
     this.productos = productos;

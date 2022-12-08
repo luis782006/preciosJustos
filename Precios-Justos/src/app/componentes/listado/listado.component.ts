@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProvinciaService } from 'src/app/services/provincia.service';
 import { Product } from 'src/app/Model/Product';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Libreria} from 'src/app/Model/libreria';
 
 @Component({
   selector: 'app-listado',
@@ -19,7 +20,8 @@ export class ListadoComponent implements OnInit {
   
   constructor(private servicio: ProvinciaService,
               private actRouter:ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private miLibreria:Libreria
              ) {}
 
   ngOnInit(): void {
@@ -28,48 +30,28 @@ export class ListadoComponent implements OnInit {
       .getProvinciasProduct(this.nombreProvincia)
       .subscribe((dataProductos) => {
         this.provinciasProduct = dataProductos;
-               
-        //delete atrribute useless
-        this.cleaningProvinciaProduct(this.provinciasProduct);
-
-        //cleaning the 3 arrayObjects
-        for (let index = 0; index < 2; index++) {
-          this.provinciasProduct.values.shift();
-        }
-        this.pushProducts();
-
+        
+        //--------incio de tratamiento de ArrayProduct
+                
+        this.miLibreria.cleaningProvinciaProduct(this.provinciasProduct);
+        this.miLibreria.deleteTwoAtt(this.provinciasProduct);
+        this.provinciasProduct=this.miLibreria.pushProducts(this.provinciasProduct);
+       
+        //--------
         this.getParamtFromUrl()
       });
 
   }
+
+
 
   getParamtFromUrl(){
     this.nombreProvincia=this.actRouter.snapshot.paramMap.get('nombreProvincia');
     //console.log(this.nombreProvincia);
   }
 
-  cleaningProvinciaProduct(provinciaProduct: any) {
-    delete provinciaProduct.range;
-    delete provinciaProduct.majorDimension;
-  }
-
-  pushProducts() {
-    //console.log(this.arrayProduct);
-    for (let index = 0; index < this.provinciasProduct.values.length; index++) {
-      // let indexCode: number = 0;
-      // let indexNameProduct: number = 1;
-      // let price: number = 2;
-      // let description:string;
-      this.arrayProduct[index] = {
-        code: this.provinciasProduct.values[index][0],
-        nameProduct: this.provinciasProduct.values[index][1],
-        price: this.provinciasProduct.values[index][2],
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellendus laudantium vel quasi quibusdam dolore incidunt qui consectetur fuga cum"
-      };
-
-      this.arrayProduct.push(this.provinciasProduct.values[index]);
-    }
-  }
+ 
+ 
   
   filtrarProductos(event:Event){
 
@@ -82,12 +64,15 @@ export class ListadoComponent implements OnInit {
     // this.servicio.pushProducto(producto);
     this.servicio.pushProducto(this.arrayProduct);
     //
+    // this.enviarArrayProducSeteadoToServ();
     this.router.navigateByUrl(`/productos/${this.codeProduct}/detalle-producto`);
   }
 
-  // mostrarDescripcion(idx: any) {    
-  //   this.router.navigateByUrl(`/productos/${idx}/detalle-producto`);
-  // }
+/*  enviarArrayProducSeteadoToServ(){
+  this.servicio.arrayProdut=this.arrayProduct;
+  //console.log(this.arrayProduct);
+  
+ } */
 
  
 }

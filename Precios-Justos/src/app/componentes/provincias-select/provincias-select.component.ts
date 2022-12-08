@@ -4,7 +4,7 @@ import { ProvinciaService } from 'src/app/services/provincia.service';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/Model/Product';
 import { Router } from '@angular/router';
-
+import {Libreria} from 'src/app/Model/libreria'
 @Component({
   selector: 'app-provincias-select',
   templateUrl: './provincias-select.component.html',
@@ -25,10 +25,14 @@ export class ProvinciasSelectComponent implements OnInit {
   nameProduct: string = 'nameProduct';
   price: number = 0;
 
+
+  enviaLibreria:string=" Que tulllllll"
+
   constructor(
     private provinciaHttp: ProvinciaService,
     private nombreProvinciaService: ProvinciaService,
-    private router: Router
+    private router: Router,
+    private miLibreria:Libreria
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +41,8 @@ export class ProvinciasSelectComponent implements OnInit {
     });
     this.valueId = 0;
   }
+
+  
 
   getNombreProvincia() {
     this.opcionValor = this.opcionSeleccionado;

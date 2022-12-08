@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import {Libreria} from 'src/app/Model/libreria'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,10 +26,10 @@ import { Pagina404Component } from './componentes/pagina404/pagina404.component'
     AppRoutingModule,
     HttpClientModule,
     FormsModule
-   
-
+  
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [Libreria],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
