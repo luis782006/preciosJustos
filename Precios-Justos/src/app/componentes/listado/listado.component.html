@@ -1,3 +1,4 @@
+
 <div>
     <!-- <div class="row"> -->
     <img class="lisimg" src="./assets/imagenes/inicio.png" alt="" style="width: 100%">
@@ -21,10 +22,25 @@
             type="text"
             class="form-control"
             id="productBuscado"
+            name="productBuscado"
             placeholder="Buscar por nombre o codigo"
             src="./assets/imagenes/search.png"
             >
+            <div >
+                <input
+                    [(ngModel)]="productPrecio"
+                    (ngModelChange)="filtrarPrecio($event)"
+                    min="0"
+                    [max]="precioMax"
+                    type="range"
+                    name="productPrecio"
+                    class="form-range"
+                    id="productPrecio"
+                >
+                <label for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
+            </div>
            
+
         </form>
       
     
@@ -55,7 +71,7 @@
 
         <ng-template #noProduct>
             <div class="alert alert-danger" role="alert">
-               El codigo o nombre de producto que buscaba no se encuentra en nuestra lista
+                El codigo o nombre de producto que buscaba no se encuentra en nuestra lista
             </div>
         </ng-template>
     </div>
