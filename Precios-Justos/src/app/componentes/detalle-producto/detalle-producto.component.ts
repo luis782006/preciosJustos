@@ -13,7 +13,7 @@ import { Libreria } from 'src/app/Model/libreria';
 
 export class DetalleProductoComponent implements OnInit {
 
-  // Creamos vairables globales por simplicidad en el manejo (evitamos tener que pasarlas por parámetro y solucionar el problema del pasaje de variables por valor y no por en js/ts...)
+  // Creamos vairables globales por simplicidad en el manejo (evitamos tener que pasarlas por parámetro y solucionar el problema del pasaje de variables por valor y no por referencia en js/ts...)
   nombreProvincia: string;
   codigoProducto: string;
   provinciasProduct: any = []; // Array

@@ -54,26 +54,32 @@ export class Libreria {
       arrayProduct[index] = {
         code: provinciasProduct.values[index][0],
         nameProduct: provinciasProduct.values[index][1],
-        price: provinciasProduct.values[index][2],
+        // price: provinciasProduct.values[index][2],
+        price: this.parseNumber(provinciasProduct.values[index][2]),
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellendus laudantium vel quasi quibusdam dolore incidunt qui consectetur fuga cum"
       };
-
-      
       arrayProduct.push(provinciasProduct.values[index]);
-      
     }
     arrayProduct.pop();
     return arrayProduct;
   }
-  formatearString(nombreProvincia) {
-    let porvinciaTilAux = nombreProvincia;
-    //elimino las tildes
-    porvinciaTilAux = porvinciaTilAux.normalize('NFD').replace(/[\u0300-\u036F]/g, '');
-    //elimino y sustituyos los espacios
-    porvinciaTilAux = porvinciaTilAux.replace(/\s/g, "-");
-    // paso a lowerCase
-    nombreProvincia = porvinciaTilAux.toLowerCase();
-    
+
+  parseNumber(price: any) {
+    price = price.split(".").join("");
+    price = price.split(",").join(".");
+    return Number(price);
+  }
+
+  formatearString(nombreProvincia: any) {
+    if (nombreProvincia != "") {
+      let porvinciaTilAux = nombreProvincia;
+      //elimino las tildes
+      porvinciaTilAux = porvinciaTilAux.normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+      //elimino y sustituyos los espacios
+      porvinciaTilAux = porvinciaTilAux.replace(/\s/g, "-");
+      // paso a lowerCase
+      nombreProvincia = porvinciaTilAux.toLowerCase();
+    }
     return nombreProvincia;
   }
 }   

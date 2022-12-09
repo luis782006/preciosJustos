@@ -6,15 +6,28 @@
     <div class="form-group">
         <label for="productBuscado" class="form-label">Buscar</label>
         <input 
-        [(ngModel)]="productBuscado" 
-        (ngModelChange)="filtrarProductos($event)"
-        type="text" 
-        class="form-control" 
-        id="productBuscado"
-        placeholder="Buscar por nombre o codigo"
+            [(ngModel)]="productBuscado" 
+            (ngModelChange)="filtrarProductos($event)"
+            type="text" 
+            class="form-control" 
+            id="productBuscado"
+            placeholder="Buscar por nombre o codigo"
         >
     </div>
     <hr>
+
+    <div >
+        <input
+            [(ngModel)]="productPrecio"
+            (ngModelChange)="filtrarPrecio($event)"
+            min="0"
+            [max]="precioMax"
+            type="range"
+            class="form-range"
+            id="productPrecio"
+        >
+        <label for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
+    </div>
 
     <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProductosFilter">
         <div class="card-body">

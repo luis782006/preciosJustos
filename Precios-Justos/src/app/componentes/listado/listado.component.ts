@@ -3,7 +3,7 @@ import { Service } from 'src/app/services/service.service';
 import { Product } from 'src/app/Model/Product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Libreria } from 'src/app/Model/libreria';
-import {Location} from '@angular/common'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-listado',
@@ -13,16 +13,16 @@ import {Location} from '@angular/common'
 
 export class ListadoComponent implements OnInit {
   provinciasProduct: any;
-  provinciasProductosFilter:any;
+  provinciasProductosFilter: any;
+  // provinciasProductosPrecio: any;
   valueId: any;
   nombreProvincia: any;
-  productBuscado: any;
-  productoABuscar:string;
-
-  
-
-
   codeProduct: any;
+  // productoABuscar: string;
+  productBuscado: string = "";
+  productPrecio: number;
+  precioMax: number;
+  
 
   constructor(
     private _service: Service,
@@ -30,7 +30,8 @@ export class ListadoComponent implements OnInit {
     private _router: Router,
     private _miLibreria: Libreria,
     private location: Location
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
     this.getParamtFromUrl();
@@ -40,8 +41,8 @@ export class ListadoComponent implements OnInit {
     this._service.getProductosProvincia(this.nombreProvincia).subscribe((dataProductos) => {
 
       this.provinciasProduct = dataProductos;
-      this.provinciasProductosFilter=dataProductos;
-      
+      this.provinciasProductosFilter = dataProductos;
+
       this._miLibreria.cleaningProvinciaProduct(this.provinciasProductosFilter);
       this._miLibreria.deleteTwoAtt(this.provinciasProductosFilter);
       this.provinciasProductosFilter = this._miLibreria.pushProducts(this.provinciasProductosFilter);
@@ -49,22 +50,38 @@ export class ListadoComponent implements OnInit {
       this._miLibreria.cleaningProvinciaProduct(this.provinciasProduct);
       this._miLibreria.deleteTwoAtt(this.provinciasProduct);
       this.provinciasProduct = this._miLibreria.pushProducts(this.provinciasProduct);
-            
+
+      // console.log(this.provinciasProduct.map((p) => p.price));
+      this.setPrecioMax();
+      // console.log(this.precioMax);
+      // console.log(this.productPrecio);
+      
+      
     });
-  
+
   }
 
 
   getParamtFromUrl() {
-     this.nombreProvincia = this._actRouter.snapshot.paramMap.get('nombreProvincia');
-     }
+    this.nombreProvincia = this._actRouter.snapshot.paramMap.get('nombreProvincia');
+  }
 
-
-  filtrarProductos(productBuscado:any) {
-    this.provinciasProductosFilter=this.provinciasProduct.filter((product)=> {
-    return this._miLibreria.formatearString(product.nameProduct).includes(this._miLibreria.formatearString(productBuscado)) ;
-    })   
-    
+  filtrarProductos(productBuscado: any) {
+    this.provinciasProductosFilter = this.provinciasProduct.filter((product) => {
+      if (this.productPrecio != 0) {
+        return this._miLibreria
+        .formatearString(product.nameProduct)
+        .includes(this._miLibreria.formatearString(productBuscado))
+        || product.code.includes(this.productBuscado) 
+        && (product.price <= this.productPrecio)
+        
+      } else {
+        return this._miLibreria
+        .formatearString(product.nameProduct)
+        .includes(this._miLibreria.formatearString(productBuscado))
+        || product.code.includes(this.productBuscado)
+      }
+    });
   }
 
   mostrarDescripcion(codigo: any) {
@@ -72,8 +89,34 @@ export class ListadoComponent implements OnInit {
     this._router.navigateByUrl(`/provincias/${this.nombreProvincia}/productos/${this.codeProduct}/detalles`);
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
+  }
+
+  setPrecioMax() {
+    this.precioMax = this.provinciasProduct[0].price;
+    this.provinciasProduct.forEach((data) => {
+      if (data.price > this.precioMax) this.precioMax = data.price;
+    });
+    this.productPrecio = this.precioMax;
+  }
+
+  filtrarPrecio(precioIngresado: any) {
+    // this.productPrecio = precioIngresado;
+
+    this.provinciasProductosFilter = this.provinciasProduct.filter((product) => {
+      if (this.productBuscado == "") {
+        // console.log("Está vacío");
+        return (product.price <= precioIngresado)
+      } else {
+        // console.log("Noooo está vacío");
+        return (this._miLibreria
+          .formatearString(product.nameProduct)
+          .includes(this._miLibreria.formatearString(this.productBuscado))
+          || product.code.includes(this.productBuscado))
+          && (product.price <= precioIngresado)
+      }
+    });
   }
 
 }
