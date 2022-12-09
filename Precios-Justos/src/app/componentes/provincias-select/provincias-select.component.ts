@@ -50,19 +50,13 @@ export class ProvinciasSelectComponent implements OnInit {
     let provinciaBuscada = this.provincias.find(
       (provincias) => provincias.nombre === this.nombreProvincia
     );
-    this.getProvinciaBuscada();
-    this._router.navigateByUrl(`/provincias/${this.nombreProvincia}/listar`);
-  }
+    this.nombreProvincia=provinciaBuscada.nombre
+    console.log("Envio ",this.nombreProvincia);
+    
+    this.nombreProvincia=this.miLibreria.formatearString(this.nombreProvincia);
 
-  //format nombreProvincia
-  getProvinciaBuscada() {
-    let porvinciaTilAux = (this.nombreProvincia);
-    //elimino las tildes
-    porvinciaTilAux = porvinciaTilAux.normalize('NFD').replace(/[\u0300-\u036F]/g, '');
-    //elimino y sustituyos los espacios
-    porvinciaTilAux = porvinciaTilAux.replace(/\s/g, "-");
-    // paso a lowerCase
-    this.nombreProvincia = porvinciaTilAux.toLowerCase();
+    //this.getProvinciaBuscada();
+    this._router.navigateByUrl(`/provincias/${this.nombreProvincia}/listar`);
   }
 
 }

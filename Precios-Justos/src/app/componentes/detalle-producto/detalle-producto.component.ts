@@ -35,7 +35,7 @@ export class DetalleProductoComponent implements OnInit {
     this._service.getProductosProvincia(this.nombreProvincia).subscribe((dataProductos) => {
       this.provinciasProduct = dataProductos;
       this._miLibreria.cleaningProvinciaProduct(this.provinciasProduct);
-      this._miLibreria.deleteTwoAtt(this.provinciasProduct);
+      //this._miLibreria.deleteTwoAtt(this.provinciasProduct);
       this.provinciasProduct = this._miLibreria.pushProducts(this.provinciasProduct);
       // console.log(this.provinciasProduct);
       this.setProducto();

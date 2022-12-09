@@ -42,7 +42,7 @@ export class Libreria {
     delete provinciasProduct.majorDimension;
   }
   
-  deleteTwoAtt(provinciasProduct: any) {
+  deleteTwoAtt(provinciasProduct:any){
     for (let index = 0; index < 2; index++) {
       provinciasProduct.values.shift();
     }
@@ -57,9 +57,23 @@ export class Libreria {
         price: provinciasProduct.values[index][2],
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, repellendus laudantium vel quasi quibusdam dolore incidunt qui consectetur fuga cum"
       };
+
+      
       arrayProduct.push(provinciasProduct.values[index]);
+      
     }
+    arrayProduct.pop();
     return arrayProduct;
   }
-
+  formatearString(nombreProvincia) {
+    let porvinciaTilAux = nombreProvincia;
+    //elimino las tildes
+    porvinciaTilAux = porvinciaTilAux.normalize('NFD').replace(/[\u0300-\u036F]/g, '');
+    //elimino y sustituyos los espacios
+    porvinciaTilAux = porvinciaTilAux.replace(/\s/g, "-");
+    // paso a lowerCase
+    nombreProvincia = porvinciaTilAux.toLowerCase();
+    
+    return nombreProvincia;
+  }
 }   

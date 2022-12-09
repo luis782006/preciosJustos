@@ -1,10 +1,22 @@
 <div class="row">
     <h3>Listado de productos</h3>
-    <div>
-        <label for="inputPassword5" class="form-label">Password</label>
-        <input type="text" [(ngModel)]="productBuscado" class="form-control" (onchange)="filtrarProductos($event)">
+        <div style="text-align: right;">
+            <button (click)="goBack()" class="btn btn-primary" >Volver</button>
+        </div>
+    <div class="form-group">
+        <label for="productBuscado" class="form-label">Buscar</label>
+        <input 
+        [(ngModel)]="productBuscado" 
+        (ngModelChange)="filtrarProductos($event)"
+        type="text" 
+        class="form-control" 
+        id="productBuscado"
+        placeholder="Buscar por nombre o codigo"
+        >
     </div>
-    <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProduct">
+    <hr>
+
+    <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProductosFilter">
         <div class="card-body">
             <h5 class="card-title">{{ producto.code }}</h5>
             <h5 class="card-text">{{ producto.nameProduct }}</h5>
