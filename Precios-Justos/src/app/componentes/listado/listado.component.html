@@ -1,37 +1,62 @@
-<div class="container">
-    <div class="row">
-        <h3>Listado de productos</h3>
-            <div style="text-align: right;">
-                <button (click)="goBack()" class="btn btn-primary" >Volver</button>
-            </div>
-        <div class="form-group">
-            <label for="productBuscado" class="form-label">Buscar</label>
-            <input 
+<div>
+    <!-- <div class="row"> -->
+    <img class="lisimg" src="./assets/imagenes/inicio.png" alt="" style="width: 100%">
+    <div class="lis">
+        <button (click)="goBack()" class="btn btn-link" style="color: white">Volver</button>
+        <p></p>
+        <h2>Listado de Productos</h2>
+    </div>
+    <!-- <div style="text-align: right;"> -->
+    <!-- </div> -->
+               
+    <div style="background-color: #03082b; background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%);" >
+
+
+        <form class="d-flex" style="background-color: #03082b; background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%); padding: 5%;" role="search">
+            <!-- <label for="productBuscado" class="form-label">Buscar</label> -->
+            <img src="./assets/imagenes/search.png" alt="">
+            <input
             [(ngModel)]="productBuscado" 
             (ngModelChange)="filtrarProductos($event)"
-            type="text" 
-            class="form-control" 
+            type="text"
+            class="form-control"
             id="productBuscado"
             placeholder="Buscar por nombre o codigo"
+            src="./assets/imagenes/search.png"
             >
-        </div>
+           
+        </form>
       
     
-       <div class="row" *ngIf="provinciasProductosFilter.length > 0; else noProduct ">
-         <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProductosFilter">
-             <div class="card-body">
-                 <h5 class="card-title">{{ producto.code }}</h5>
-                 <h5 class="card-text">{{ producto.nameProduct }}</h5>
-                 <h6 class="card-text">{{ producto.price }}</h6>
-                 
-                 <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
-             </div>
-         </div>   
-       </div>
+        <div *ngIf="provinciasProductosFilter.length > 0; else noProduct ">
+             <div class="card" style="margin: 2%;" *ngFor="let producto of provinciasProductosFilter">
+                <div class="row align-items-start">
+                    <div class="col text-center">
+                        <img class="imagenProd" style="width: 40%;" src="./assets/imagenes/Producto2.png" alt="">
+                        <h6 class="card-title" style="color: darkgray;" >{{producto.code}}</h6>            
+                    </div>
+                    <div class="col">
+                        <p></p>
+                        <h5 class="card-text">$ {{ producto.price }}</h5>
+                    </div>
+                </div>
+
+                <div >
+                    
+                </div>
+                <div class="card-body">
+                    <!-- <h5 class="card-title">{{ producto.code }}</h5> -->
+                    <h5 class="card-text">{{ producto.nameProduct }}</h5>
+                    
+                    <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
+                </div>
+            </div>   
+        </div>
+
         <ng-template #noProduct>
             <div class="alert alert-danger" role="alert">
                El codigo o nombre de producto que buscaba no se encuentra en nuestra lista
-              </div>
-            </ng-template>
+            </div>
+        </ng-template>
     </div>
 </div>
