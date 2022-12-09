@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
           this.opaSpin=1
           break;
         case 7:
-          this.router.navigateByUrl('buscar/provincias');
+          this.router.navigateByUrl('/provincias');
           break;
         default:
           break;

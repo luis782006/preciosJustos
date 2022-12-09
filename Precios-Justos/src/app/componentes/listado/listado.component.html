@@ -4,22 +4,13 @@
         <label for="inputPassword5" class="form-label">Password</label>
         <input type="text" [(ngModel)]="productBuscado" class="form-control" (onchange)="filtrarProductos($event)">
     </div>
-    <!-- <div class="card" style="width: 18rem;" *ngFor="let producto of arrayProduct; let idx = index"> -->
-    <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProduct; let idx = index" routerLink="/productos/{{ producto.code }}/detalle-producto">
+    <div class="card" style="width: 18rem;" *ngFor="let producto of provinciasProduct">
         <div class="card-body">
-            <h5 class="card-title">{{producto.code}}</h5>
-            <h5 class="card-text">{{producto.nameProduct}}</h5>
-            <h6 class="card-text">{{producto.price}}</h6>
-
-            <!-- <button class="btn btn-success" (click)="mostrarDescripcion(producto.code) route">Ver mas</button> -->
-            <!-- <button class="btn btn-success" routerLink="/productos/{{ producto.code }}/detalle-producto">Ver mas</button> -->
-            <button class="btn btn-success">Ver mas</button>
-
-            <!-- Prueba con índice -->
-            <h6 class="card-text">{{ idx }}</h6>
-            <!-- <button class="btn btn-success" (click)="mostrarDescripcion(idx)">Ver mas</button> -->
+            <h5 class="card-title">{{ producto.code }}</h5>
+            <h5 class="card-text">{{ producto.nameProduct }}</h5>
+            <h6 class="card-text">{{ producto.price }}</h6>
             
+            <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
         </div>
-    </div>
-   
+    </div>   
 </div>

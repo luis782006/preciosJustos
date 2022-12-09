@@ -9,9 +9,9 @@ import { Pagina404Component } from './componentes/pagina404/pagina404.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'buscar/provincias', component: ProvinciasSelectComponent },
-  { path: 'productos/:nombreProvincia/listar', component: ListadoComponent },
-  { path: 'productos/:codeProduct/detalle-producto', component: DetalleProductoComponent},
+  { path: 'provincias', component: ProvinciasSelectComponent },
+  { path: 'provincias/:nombreProvincia/listar', component: ListadoComponent },
+  { path: 'provincias/:nombreProvincia/productos/:codeProduct/detalles', component: DetalleProductoComponent},
   { path: '**', component:Pagina404Component }
 ];
 
