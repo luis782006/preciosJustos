@@ -18,7 +18,7 @@ export class ListadoComponent implements OnInit {
   nombreProvincia: any;
   productBuscado: any;
   productoABuscar:string;
-
+  mostrarAlerta:boolean=false;
   
 
 
@@ -61,8 +61,10 @@ export class ListadoComponent implements OnInit {
 
 
   filtrarProductos(productBuscado:any) {
+    
     this.provinciasProductosFilter=this.provinciasProduct.filter((product)=> {
-    return this._miLibreria.formatearString(product.nameProduct).includes(this._miLibreria.formatearString(productBuscado)) ;
+    return this._miLibreria.formatearString(product.nameProduct).includes(this._miLibreria.formatearString(productBuscado))
+    // || product.code.includes(productBuscado);
     })   
     
   }
@@ -75,6 +77,8 @@ export class ListadoComponent implements OnInit {
   goBack(){
     this.location.back();
   }
+
+
 
 }
 
