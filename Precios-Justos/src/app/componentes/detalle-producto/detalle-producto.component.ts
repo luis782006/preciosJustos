@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Service } from 'src/app/services/service.service';
 import { runInThisContext } from 'vm';
 import { Libreria } from 'src/app/Model/libreria';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -22,28 +23,26 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private _actRoute: ActivatedRoute,
     private _service: Service,
-    private _miLibreria: Libreria
+    private _miLibreria: Libreria,
+    private _location: Location
   ) { 
 
   }
 
   ngOnInit(): void {
     this.getParamUrl();
-    // No funcionó
-    // this.productos = this._miLibreria.getProductos(this.nombreProvincia);
-    // Alternativa
     this._service.getProductosProvincia(this.nombreProvincia).subscribe((dataProductos) => {
       this.provinciasProduct = dataProductos;
       this._miLibreria.cleaningProvinciaProduct(this.provinciasProduct);
-      //this._miLibreria.deleteTwoAtt(this.provinciasProduct);
       this.provinciasProduct = this._miLibreria.pushProducts(this.provinciasProduct);
-      // console.log(this.provinciasProduct);
       this.setProducto();
     });
-
-    // Por fuera no funciona!!!
-    // this.setProducto();
   }
+
+  goBack() {
+    this._location.back();
+  }
+
 
   getParamUrl() {
     this.nombreProvincia = this._actRoute.snapshot.paramMap.get('nombreProvincia');

@@ -1,17 +1,20 @@
-<div class="row">
-    <div class="col">
-        <!-- Reemplazar por otra imagen -->
-        <img src="./../../../assets/argMapa.png">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <h4>Detalle Producto</h4>
-        <br>
-        <h5>Código: {{ producto.code }}</h5>
-        <h5>Artículo: {{ producto.nameProduct }}</h5>
-        <h5>Precio: {{ producto.price }}</h5>
-        <h5>Descripción: {{ producto.description }}</h5>
+<div class="container-fluid">
+    <div class="row">
+        <div class="fondito">
+            <div class="contenido-tarjeta">
+                <div class="contenedor-imagen">
+                    <img class="logoInicio" src="./assets/imagenes/Products.jpg">
+                </div>
+                <h4>Detalle Producto</h4>
+                <br>
+                <h5><span>Código:</span> {{ producto.code }}</h5>
+                <h5><span>Artículo:</span> {{ producto.nameProduct }}</h5>
+                <h5><span>Precio:</span> ${{ producto.price }}</h5>
+                <h5><span>Descripción:</span> {{ producto.description }}</h5>
+                <span style="float: right;">
+                    <button (click)="goBack()" class="btn btn-secondary" style="color: white">Volver</button>
+                </span>
+            </div>
+        </div>
     </div>
 </div>

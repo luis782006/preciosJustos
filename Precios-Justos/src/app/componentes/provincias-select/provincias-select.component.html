@@ -1,13 +1,9 @@
 <div class="contenedor">
-    
     <img src="./assets/imagenes/inicio.png" alt="" style="width: 100%">
-        
     <h2 class="provinciaaa">Seleccionar Provincia</h2>
-
     <select [(ngModel)]="opcionSeleccionado" class="form-select" (change)="getNombreProvincia()">
         <option *ngFor="let provincia of provincias" [value]='provincia.id'>{{provincia.nombre}}</option>
      </select>
-    
     <div class="provinciaaa">
         <button class="btn btn-danger" (click)="sendNombreProvinciasToService()">Ver listado productos</button>
     </div>

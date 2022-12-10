@@ -1,18 +1,18 @@
-body {
-    display: inline-block;
+.container-fluid {
+    // display: inline-block;
     background: #00AFF9 url(../../../assets/imagenes/Unplugged.png) center/cover no-repeat;
-    height: 100vh;
-    margin: 0;
+    // height: 100vh;
     color: white;
 }
 
-h1 {
-    margin: .8em 3rem;
-    font: 4em Roboto;
-}
 
-p {
-    display: inline-block;
-    margin: .2em 3rem;
-    font: 2em Roboto;
+.texto {
+    margin-left: 50px;
+    font: 5rem Roboto;
+    p {
+        font: 2rem Roboto;
+    }
+    h1 {
+        padding-top: 50px;
+    }
 }

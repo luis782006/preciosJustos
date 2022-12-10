@@ -1,13 +1,16 @@
 <div>
     <img class="lisimg" src="./assets/imagenes/inicio.png" alt="" style="width: 100%">
-    <div class="lis">
-        <button (click)="goBack()" class="btn btn-link" style="color: white">Volver</button>
-        <p></p>
-        <h2>Listado de Productos</h2>
-    </div>           
     <div style="background-color: #03082b; background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%);">
-        <form class="d-flex" style="background-color: #03082b; background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%); padding: 5%;" role="search">
-            <img src="./assets/imagenes/search.png" alt="">
+        <h2 style="color: #f5f2f5; padding: 10% 5% 0;">Listado de Productos</h2>
+        <button 
+        style="color: white;
+            position: sticky;
+            left: 75%;
+            top: 602px;
+            z-index: 9999;" 
+            (click)="goBack()" 
+            class="btn btn-secondary">Volver</button>
+        <form class="d-flex" style="background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%); padding: 5%;" role="search">
             <input
                 [(ngModel)]="productBuscado" 
                 (ngModelChange)="filtrarProductos($event)"
@@ -18,22 +21,26 @@
                 placeholder="Buscar por nombre o codigo"
                 src="./assets/imagenes/search.png"
             >
-            <div >
-                <input
-                    [(ngModel)]="productPrecio"
-                    (ngModelChange)="filtrarPrecio($event)"
-                    min="0"
-                    [max]="precioMax"
-                    type="range"
-                    name="productPrecio"
-                    class="form-range"
-                    id="productPrecio"
-                >
-                <label for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
-            </div>
         </form>
+        <form>
+            <input
+                [(ngModel)]="productPrecio"
+                (ngModelChange)="filtrarPrecio($event)"
+                min="0"
+                [max]="precioMax"
+                type="range"
+                name="productPrecio"
+                class="form-range"
+                style="padding: 0 6%"
+                id="productPrecio"
+            >
+            <label style="color: white;
+            padding: 0%;
+            margin-left: 10%;" for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
+        </form>
+        
         <div *ngIf="provinciasProductosFilter.length > 0; else noProduct ">
-             <div class="card" style="margin: 2%;" *ngFor="let producto of provinciasProductosFilter">
+             <div class="card" style="margin: 3%; background-color: #8EC5FC; background-image: linear-gradient(0deg, #8EC5FC 0%, #f5f2f5 100%);" *ngFor="let producto of provinciasProductosFilter">
                 <div class="row align-items-start">
                     <div class="col text-center">
                         <img class="imagenProd" style="width: 40%;" src="./assets/imagenes/Producto2.png" alt="">
@@ -44,7 +51,6 @@
                         <h5 class="card-text">$ {{ producto.price }}</h5>
                     </div>
                 </div>
-                <div></div>
                 <div class="card-body">
                     <h5 class="card-text">{{ producto.nameProduct }}</h5>
                     <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
@@ -52,7 +58,7 @@
             </div>   
         </div>
         <ng-template #noProduct>
-            <div class="alert alert-danger" role="alert">
+            <div style="position: relative; top: 25%;" class="alert alert-danger" role="alert">
                 El codigo o nombre de producto que buscaba no se encuentra en nuestra lista
             </div>
         </ng-template>
