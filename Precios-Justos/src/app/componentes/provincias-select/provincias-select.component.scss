@@ -1,36 +1,36 @@
 @import "../../shared/miSass.scss";
-.container {
-  h2 {
-    font-family: $font;
-    color: $primary-color;
-    margin-bottom: 1rem;
-    margin-top: 5rem;
-  }
+.contenedor {
+  background-color: #0093E9;
+  font-family: $font;
+  color: $primary-color;
+  margin: auto;  
 }
-.portal {
-  @include theme;
-  @include center;
-  flex-direction: column;
-  justify-content: flex-start;
-  border-radius: 20px;
-  width: 100%;
-  height: 100vh;
-  margin: auto;
+.provinciaaa{
+  padding: 50px;
 }
 
-.miselect {
-  max-width: 40rem;
-  padding: 0.5rem;
-  font-size: 1rem;
+.footerprov{
+  background-color: black;  
+  padding: 5px;
+  
 }
-p {
-  color: $primary-color;
-  font-size: 1.5rem;
+
+.maxim{
+  width: 50%;
+  color:dimgrey;
+  margin: 1%;
+  font-size: 60%;
 }
-button {
-  font-size: 1.5rem;
+
+.maximimg{
+  width: 15px;
 }
-.col{
-    @include center;
-    flex-direction: column;
+
+.flecha{
+  width: 20%;  
+}
+
+.letrass{
+  font-size: 10%;
+  font-style: oblique;
 }
