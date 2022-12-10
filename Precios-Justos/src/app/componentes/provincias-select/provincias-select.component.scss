@@ -1,36 +1,48 @@
 @import "../../shared/miSass.scss";
+
 .contenedor {
   background-color: #0093E9;
   font-family: $font;
   color: $primary-color;
-  margin: auto;  
+  margin: auto;
+  height: 100vh;
 }
-.provinciaaa{
+
+.provinciaaa {
   padding: 50px;
 }
 
-.footerprov{
-  background-color: black;  
+.footerprov {
+  background-color: black;
   padding: 5px;
-  
+  position: absolute;
+  bottom: 0px;
+  width: 40%;
 }
 
-.maxim{
+.maxim {
   width: 50%;
-  color:dimgrey;
+  color: dimgrey;
   margin: 1%;
   font-size: 60%;
+  padding-left: 2%;
 }
 
-.maximimg{
+.maximimg {
   width: 15px;
 }
 
-.flecha{
-  width: 20%;  
+.flecha {
+  width: 20%;
 }
 
-.letrass{
+.letrass {
   font-size: 10%;
   font-style: oblique;
+}
+
+.form-select {
+  font-size:1.5rem; 
+  width: 90%; 
+  margin:5%;
 }

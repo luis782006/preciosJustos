@@ -4,8 +4,7 @@
         
     <h2 class="provinciaaa">Seleccionar Provincia</h2>
 
-    <select [(ngModel)]="opcionSeleccionado" class="form-select" style="font-size:1.5rem; width: 90%; margin:5%;"
-        (change)="getNombreProvincia()">
+    <select [(ngModel)]="opcionSeleccionado" class="form-select" (change)="getNombreProvincia()">
         <option *ngFor="let provincia of provincias" [value]='provincia.id'>{{provincia.nombre}}</option>
      </select>
     
@@ -13,17 +12,17 @@
         <button class="btn btn-danger" (click)="sendNombreProvinciasToService()">Ver listado productos</button>
     </div>
     <div class="footerprov">
-        <p class="maxim">
-            <img class="maximimg"src="./assets/imagenes/Vector.png" alt="">
+        <span class="maxim">
+            <img class="maximimg" src="./assets/imagenes/Vector.png" alt="">
             Luis Sanchez
-        </p>
-        <p class="maxim">
+        </span>
+        <span class="maxim">
             <img class="maximimg" src="./assets/imagenes/Vector.png" alt="">
             Kevin Nuñez
-        </p>
-        <p class="maxim">
+        </span>
+        <span class="maxim">
             <img class="maximimg" src="./assets/imagenes/Vector.png" alt="">
             Luis Orescovich
-        </p>                   
+        </span>                   
     </div>
 </div>
