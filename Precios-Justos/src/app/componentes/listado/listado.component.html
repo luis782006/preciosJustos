@@ -14,6 +14,7 @@
 
 
         <form class="d-flex" style="background-color: #03082b; background-image: linear-gradient(90deg, #03082b 0%, #C850C0 46%, #FFCC70 100%); padding: 5%;" role="search">
+           
             <!-- <label for="productBuscado" class="form-label">Buscar</label> -->
             <img src="./assets/imagenes/search.png" alt="">
             <input
@@ -26,26 +27,25 @@
             placeholder="Buscar por nombre o codigo"
             src="./assets/imagenes/search.png"
             >
-            <div >
-                <input
-                    [(ngModel)]="productPrecio"
-                    (ngModelChange)="filtrarPrecio($event)"
-                    min="0"
-                    [max]="precioMax"
-                    type="range"
-                    name="productPrecio"
-                    class="form-range"
-                    id="productPrecio"
-                >
-                <label for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
-            </div>
-           
-
         </form>
-      
-    
+
+        <div >
+            <input
+                [(ngModel)]="productPrecio"
+                (ngModelChange)="filtrarPrecio($event)"
+                min="0"
+                [max]="precioMax"
+                type="range"
+                name="productPrecio"
+                class="form-range"
+                style="padding: 10%"
+                id="productPrecio"
+            >
+            <label style="color: white; padding: 2%" for="filtroPrecio" class="form-label">Precio máximo - seleccionado: ${{ productPrecio }}</label>
+        </div>
+           
         <div *ngIf="provinciasProductosFilter.length > 0; else noProduct ">
-             <div class="card" style="margin: 2%;" *ngFor="let producto of provinciasProductosFilter">
+             <div class="card" style="margin: 3%; background-color: #8EC5FC; background-image: linear-gradient(0deg, #8EC5FC 0%, #f5f2f5 100%);" *ngFor="let producto of provinciasProductosFilter">
                 <div class="row align-items-start">
                     <div class="col text-center">
                         <img class="imagenProd" style="width: 40%;" src="./assets/imagenes/Producto2.png" alt="">
@@ -57,13 +57,9 @@
                     </div>
                 </div>
 
-                <div >
-                    
-                </div>
                 <div class="card-body">
                     <!-- <h5 class="card-title">{{ producto.code }}</h5> -->
                     <h5 class="card-text">{{ producto.nameProduct }}</h5>
-                    
                     <button class="btn btn-success" (click)="mostrarDescripcion(producto.code)">Ver mas</button>
                 </div>
             </div>   
